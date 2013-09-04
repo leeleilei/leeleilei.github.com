@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>使用gawk and shell “调戏”文本</title>
+        <link rel="stylesheet" href="http://leeleilei.github.com/theme/css/main.css">
+                <link href="http://leeleilei.github.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Lee Atom Feed" />
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://leeleilei.github.com/">David Lee </a></h1>
+                <nav><ul>
+                                                                                    <li class="active"><a href="http://leeleilei.github.com/category/misc.html">misc</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://leeleilei.github.com/shi-yong-gawk-and-shell-diao-xi-wen-ben.html" rel="bookmark"
+           title="Permalink to 使用gawk and shell “调戏”文本">使用gawk and shell “调戏”文本</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-09-03T21:00:00">
+                Tue 03 September 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="http://leeleilei.github.com/author/leeleileigmailcom.html">leeleilei@gmail.com</a>
+        </address>
+        <p>In <a href="http://leeleilei.github.com/category/misc.html">misc</a>. </p>
+<p>tags: <a href="http://leeleilei.github.com/tag/gawk.html">gawk</a><a href="http://leeleilei.github.com/tag/shell.html">shell</a></p>
+</footer><!-- /.post-info -->      <h1>烦恼</h1>
+<ol>
+<li>我有一个2G大小的文件要处理，</li>
+<li>我担心处理耗时过大，内存泄漏</li>
+<li>我想提取其中的几列</li>
+<li>如果所在行有bala-bala，我并不想提取</li>
+<li>其中有些行并不是CSV结构，我想格式化</li>
+<li>我想格式化这个类似XML结构的文本</li>
+<li>我想快速排序</li>
+<li>我想按第2,3列排序</li>
+<li>我想对比两个文件的不同</li>
+<li>我想分割文件</li>
+<li>我想合并文件</li>
+</ol>
+<blockquote>
+<p>如果你的工作中有这样的场景，请义无反顾的使用 gawk 和 shell toolkit</p>
+</blockquote>
+<h1>对比两个文件的不同</h1>
+<div class="highlight"><pre><span class="cp"># diff -y --suppress-common-lines foo1.txt foo2.txt</span>
+<span class="n">line3</span> <span class="n">line3</span> <span class="n">value2</span>       <span class="o">|</span> <span class="n">line2</span> <span class="n">line2</span> <span class="n">value</span>
+                         <span class="o">&gt;</span> <span class="n">line3</span> <span class="n">line3</span> <span class="n">value3</span>
+                         <span class="o">&gt;</span> <span class="n">line4</span> <span class="n">line4</span> <span class="n">value4</span>
+                         <span class="o">&gt;</span> <span class="n">line5</span> <span class="n">line5</span> <span class="n">value5</span>
+</pre></div>
+
+
+<h1>提取某些行的值</h1>
+<p><strong>提取ISDN</strong></p>
+<div class="highlight"><pre><span class="c"># cat huabiao.txt | grep -oP &quot;MSISDN=[0-9]{10,13}&quot; | sed &#39;s/MSISDN=//g&#39; &gt; isdn</span>
+</pre></div>
+
+
+<p><strong>提取ISDN，IMSI和PDP</strong></p>
+<div class="highlight"><pre><span class="cp">#cat huawei_01.txt | awk &#39;{</span>
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="mi">0</span> <span class="o">~</span> <span class="o">/</span><span class="n">MSISDN</span><span class="o">=/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">isdn</span><span class="o">=</span><span class="err">$</span><span class="mi">0</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="mi">0</span> <span class="o">~</span> <span class="o">/</span><span class="n">PDPCNTX</span><span class="o">=/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">pdp</span><span class="o">=</span><span class="err">$</span><span class="mi">0</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="mi">0</span> <span class="o">~</span> <span class="o">/</span><span class="n">SUBEND</span><span class="o">/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">print</span> <span class="n">isdn</span><span class="p">,</span><span class="n">pdp</span>
+    <span class="p">}</span>
+    <span class="n">isdn</span><span class="o">=</span><span class="s">&quot;&quot;</span>
+    <span class="n">pdp</span><span class="o">=</span><span class="s">&quot;&quot;</span>
+<span class="p">}</span><span class="err">&#39;</span> <span class="o">&gt;</span> <span class="n">isdn</span><span class="p">.</span><span class="n">pdp</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+
+
+<p><strong>Multiple PDP</strong></p>
+<div class="highlight"><pre><span class="cp">#cat huawei_01.txt | awk &#39;{</span>
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="mi">0</span> <span class="o">~</span> <span class="o">/</span><span class="n">MSISDN</span><span class="o">=/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">isdn</span><span class="o">=</span><span class="err">$</span><span class="mi">0</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="mi">0</span> <span class="o">~</span> <span class="o">/</span><span class="n">PDPCNTX</span><span class="o">=/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">pdp</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="err">｛</span>
+            <span class="n">pdp</span><span class="o">=</span><span class="err">$</span><span class="mi">0</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">pdp</span><span class="o">=</span><span class="n">pdp</span><span class="s">&quot; &quot;</span><span class="err">$</span><span class="mi">0</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="mi">0</span> <span class="o">~</span> <span class="o">/</span><span class="n">SUBEND</span><span class="o">/</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">print</span> <span class="n">isdn</span><span class="p">,</span><span class="n">pdp</span>
+    <span class="p">}</span>
+    <span class="n">isdn</span><span class="o">=</span><span class="s">&quot;&quot;</span>
+    <span class="n">pdp</span><span class="o">=</span><span class="s">&quot;&quot;</span>
+<span class="p">}</span><span class="err">&#39;</span> <span class="o">&gt;</span> <span class="n">isdn</span><span class="p">.</span><span class="n">pdp</span><span class="p">.</span><span class="n">txt</span>
+</pre></div>
+
+
+<blockquote>
+<p>Note: 由于gawk可以无声名的使用变量，并且是pattern重复处理stream，一定记得将关键变量初始话，否则上一条记录的变量带给下一条记录。</p>
+</blockquote>
+<h1>排序并排除重复记录</h1>
+<div class="highlight"><pre><span class="c"># sort -u foo.txt &gt; foo.new</span>
+<span class="c"># sort foo.txt |uniq &gt; foo.new</span>
+<span class="c">#sort -t &quot;,&quot; -k2 -u foo.txt</span>
+</pre></div>
+
+
+<h1>KI变换</h1>
+<p>In the migration process, we need transform the E// KI file to the H// formatted</p>
+<p>The source format, e.txt</p>
+<div class="highlight"><pre><span class="mi">123120123456789</span> <span class="n">abcdef0123456789abcdef0123456789</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+</pre></div>
+
+
+<p>the target format, h.txt</p>
+<div class="highlight"><pre><span class="mi">123120123456789</span> <span class="n">abcdef0123456789abcdef0123456789</span> <span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span> <span class="err">@</span> <span class="mi">0</span>
+</pre></div>
+
+
+<p>here comes the transformation</p>
+<div class="highlight"><pre><span class="c">#cat e.txt | awk ‘{print $1,$2,$5,$4,$3,”0 @ 0″}’ &gt; h.txt &amp;</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://leeleilei.github.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

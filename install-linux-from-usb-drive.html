@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>Install Linux from USB Drive</title>
+        <link rel="stylesheet" href="http://leeleilei.github.com/theme/css/main.css">
+                <link href="http://leeleilei.github.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="David Lee Atom Feed" />
+                
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="http://leeleilei.github.com/">David Lee </a></h1>
+                <nav><ul>
+                                                                                    <li class="active"><a href="http://leeleilei.github.com/category/misc.html">misc</a></li>
+                                                </ul></nav>
+        </header><!-- /#banner -->
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://leeleilei.github.com/install-linux-from-usb-drive.html" rel="bookmark"
+           title="Permalink to Install Linux from USB Drive">Install Linux from USB Drive</a></h1>
+          </header>
+
+    <div class="entry-content">
+      <footer class="post-info">
+        <abbr class="published" title="2013-09-03T21:00:00">
+                Tue 03 September 2013
+        </abbr>
+
+                <address class="vcard author">
+                By <a class="url fn" href="http://leeleilei.github.com/author/leeleileigmailcom.html">leeleilei@gmail.com</a>
+        </address>
+        <p>In <a href="http://leeleilei.github.com/category/misc.html">misc</a>. </p>
+<p>tags: <a href="http://leeleilei.github.com/tag/linux.html">linux</a><a href="http://leeleilei.github.com/tag/usb-installation.html">usb installation</a></p>
+</footer><!-- /.post-info -->      <p>Remember few months ago, I thought it is really difficult to install a linux from a USB, since it requires GRUB, kinds of alternative CD media, and a "special" cd boot vmlinuz and initrd.gz files. Now, go to hell~ You give me any kind of media file, I can use it on a usb stick and install it right way. The "natty" was released yesterday, let's try it!</p>
+<h1>Installation Media</h1>
+<p>You need a portable USB drive or pen drive, whose capacity is larger than 1GB, and a computer with capability of boot selection</p>
+<h1>Partation it</h1>
+<ol>
+<li>Plugin your USB drive</li>
+<li>Find the right USB drive ID</li>
+</ol>
+<div class="highlight"><pre><span class="c">#dmesg|grep sd</span>
+</pre></div>
+
+
+<ol>
+<li>Partition it</li>
+</ol>
+<div class="highlight"><pre><span class="cp">#fdisk /dev/sdb (run it as root or sudo fdisk /dev/sdb)</span>
+<span class="n">press</span> <span class="s">&quot;n&quot;</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">partition</span>
+<span class="n">press</span> <span class="s">&quot;p&quot;</span> <span class="n">to</span> <span class="n">create</span> <span class="n">the</span> <span class="n">primary</span> <span class="n">partition</span>
+<span class="n">press</span> <span class="s">&quot;1&quot;</span> <span class="n">to</span> <span class="n">create</span> <span class="n">the</span> <span class="n">number</span> <span class="mi">1</span> <span class="n">primary</span> <span class="n">partion</span>
+<span class="n">press</span> <span class="s">&quot;p&quot;</span> <span class="n">to</span> <span class="n">view</span> <span class="n">the</span> <span class="n">current</span> <span class="n">table</span><span class="p">,</span> <span class="n">then</span> <span class="n">you</span> <span class="n">shall</span> <span class="n">get</span> <span class="n">the</span> <span class="n">sdb1</span> <span class="n">now</span>
+<span class="n">press</span> <span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="n">then</span> <span class="s">&quot;1&quot;</span> <span class="n">to</span> <span class="n">toggle</span> <span class="n">the</span> <span class="n">sdb1</span> <span class="n">as</span> <span class="n">bootable</span>
+<span class="n">press</span> <span class="s">&quot;t&quot;</span><span class="p">,</span> <span class="n">then</span> <span class="s">&quot;c&quot;</span> <span class="n">to</span> <span class="n">change</span> <span class="n">the</span> <span class="n">system</span> <span class="n">id</span> <span class="n">as</span> <span class="s">&quot;windows 95&quot;</span>
+<span class="n">press</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="n">save</span> <span class="n">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">partition</span> <span class="n">information</span> <span class="n">to</span> <span class="n">the</span> <span class="n">USB</span> <span class="n">drive</span>
+</pre></div>
+
+
+<h1>Prepare the file system</h1>
+<p>Using the ISO file to install the Linux, you shall use a "FAT32" partition to save the ISO file, otherwise the ISO couldn't be seeked by the GRUB loader</p>
+<div class="highlight"><pre><span class="c">#mkfs -t vfat /dev/sdb1 (replace sdb1 with your real media partition, do NOT be wrong)</span>
+</pre></div>
+
+
+<ol>
+<li>Downlaod the ubuntu 11.04 iso from ubuntu.com/download</li>
+<li>
+<p>Copy the ISO file to the sdb1 partition</p>
+<p>```shell</p>
+<h1>mount /dev/sdb1 /mnt</h1>
+<h1>cp ubuntu-11.04-desktop-i386.iso /mnt</h1>
+<p>```</p>
+</li>
+</ol>
+<p>or you can copy it from windows system, since the fat32 partition is working under windows.</p>
+<ol>
+<li>
+<p>Install the GRUB (grub2 here, same as grub1)
+GRUB is the bootloader, which will control how you start the OS, by ISO or by normal media</p>
+<ol>
+<li>Mount the sdb1 partition</li>
+</ol>
+<p>```shell</p>
+<h1>mount /dev/sdb1 /mnt</h1>
+<h1>grub-install --root-directory=/mnt /dev/sdb (replace sdb with your real USB drive id)</h1>
+<p>```</p>
+</li>
+</ol>
+<p>Now you got a bootable USB stick bearing the ubuntu installation media.</p>
+<h1>Begin Installation</h1>
+<ol>
+<li>Plugin your USB dirve and boot your system</li>
+<li>Press "F12" and select boot from USB/Flash drive</li>
+<li>then you will get a "grub&gt;" prompt and stopped, that's what we wanna</li>
+<li>
+<p>Configure the boot parameter</p>
+<p><code>shell
+grub&gt; ls</code></p>
+</li>
+</ol>
+<p>you will get a list of partitions including your local hard disk partition and your USB partition. That's easily identified by the count of partition number, like (hd0,1)(hd1,1)(hd1,2),(hd1,3),etc. we only have 1 partition on USB, so (hd0,1) is the USB partition</p>
+<div class="highlight"><pre><span class="err">```</span><span class="n">shell</span>
+<span class="n">grub</span><span class="o">&gt;</span> <span class="n">set</span> <span class="n">root</span><span class="o">=</span><span class="err">&#39;</span><span class="p">(</span><span class="n">hd0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="err">&#39;</span>
+<span class="n">grub</span><span class="o">&gt;</span> <span class="n">loopback</span> <span class="n">loop</span> <span class="o">/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">11.04</span><span class="o">-</span><span class="n">desktop</span><span class="o">-</span><span class="n">i386</span><span class="p">.</span><span class="n">iso</span>
+<span class="n">grub</span><span class="o">&gt;</span> <span class="n">linux</span> <span class="p">(</span><span class="n">loop</span><span class="p">)</span><span class="o">/</span><span class="n">casper</span><span class="o">/</span><span class="n">vmlinuz</span> <span class="n">boot</span><span class="o">=</span><span class="n">casper</span> <span class="n">iso</span><span class="o">-</span><span class="n">scan</span><span class="o">/</span><span class="n">filename</span><span class="o">=/</span><span class="n">ubuntu</span><span class="o">-</span><span class="mf">11.04</span><span class="o">-</span><span class="n">desktop</span><span class="o">-</span><span class="n">i386</span><span class="p">.</span><span class="n">iso</span>
+<span class="n">grub</span><span class="o">&gt;</span> <span class="n">initrd</span> <span class="p">(</span><span class="n">loop</span><span class="p">)</span><span class="o">/</span><span class="n">casper</span><span class="o">/</span><span class="n">initrd</span><span class="p">.</span><span class="n">lz</span>
+<span class="err">```</span>
+</pre></div>
+
+
+<blockquote>
+<p>Tip: the loopback command will assign the "loop" as the media file (iso), then when setting the kernel/linux and initrd files, you can use the "TAB" key to let the grub to "seek" the possible files, e.g. initrd file here is the initrd.lz not initrd.gz, you can use "TAB" after you typing the "initrd.". The GRUB will automatically seek the initrd.lz</p>
+</blockquote>
+<div class="highlight"><pre><span class="err">```</span><span class="n">shell</span>
+<span class="n">grub</span><span class="o">&gt;</span> <span class="n">boot</span>
+<span class="err">```</span>
+</pre></div>
+
+
+<h1>Summary</h1>
+<ol>
+<li>GRUB is so powerful to read ISO or file system right before system "booted"</li>
+<li>FAT32 file system bearing the ISO file</li>
+<li>loopback syntax in the GRUB</li>
+<li>Of course, You can using your existing grub.cfg to add the installation menuentry.</li>
+<li>
+<p>Do NOT try to install a new system on the same USB drive where your iso is.</p>
+</li>
+<li>
+<p>More examples of boot entry</p>
+</li>
+</ol>
+<div class="highlight"><pre><span class="nx">cat</span> <span class="o">&lt;&lt;</span><span class="nx">EOF</span><span class="o">&gt;</span> <span class="p">/</span><span class="nx">mnt</span><span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">grub</span><span class="p">/</span><span class="nx">grub.cfg</span>
+<span class="nx">menuentry</span> <span class="s2">&quot;Ubuntu Live 9.10 32bit&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">ubuntu</span><span class="o">-</span><span class="mf">9.10</span><span class="na">-desktop-i386.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">casper</span><span class="p">/</span><span class="nx">vmlinuz</span> <span class="n">boot</span><span class="o">=</span><span class="nx">casper</span> <span class="nx">iso</span><span class="na">-scan</span><span class="p">/</span><span class="nb">filename</span><span class="o">=/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">ubuntu</span><span class="o">-</span><span class="mf">9.10</span><span class="na">-desktop-i386.iso</span> <span class="nx">noeject</span> <span class="nx">noprompt</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">casper</span><span class="p">/</span><span class="nx">initrd.lz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;Ubuntu Live 9.10 64bit&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">ubuntu</span><span class="o">-</span><span class="mf">9.10</span><span class="na">-desktop-amd64.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">casper</span><span class="p">/</span><span class="nx">vmlinuz</span> <span class="n">boot</span><span class="o">=</span><span class="nx">casper</span> <span class="nx">iso</span><span class="na">-scan</span><span class="p">/</span><span class="nb">filename</span><span class="o">=/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">ubuntu</span><span class="o">-</span><span class="mf">9.10</span><span class="na">-desktop-amd64.iso</span> <span class="nx">noeject</span> <span class="nx">noprompt</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">casper</span><span class="p">/</span><span class="nx">initrd.lz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;Grml small 2009.10&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">grml</span><span class="na">-small_2009.10.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">grmlsmall</span><span class="p">/</span><span class="nx">linux26</span> <span class="n">findiso</span><span class="o">=</span><span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">grml</span><span class="na">-small_2009.10.iso</span> <span class="n">apm</span><span class="o">=</span><span class="nx">power</span><span class="na">-off</span> <span class="n">lang</span><span class="o">=</span><span class="nx">us</span> <span class="n">vga</span><span class="o">=</span><span class="mi">791</span> <span class="n">boot</span><span class="o">=</span><span class="nx">live</span> <span class="nx">nomce</span> <span class="nx">noeject</span> <span class="nx">noprompt</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">grmlsmall</span><span class="p">/</span><span class="nx">initrd.gz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;tinycore&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">tinycore_2.3.1.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">bzImage</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">tinycore.gz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;Netinstall 32 preseed&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">mini.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">linux</span> <span class="nx">auto</span> <span class="n">url</span><span class="o">=</span><span class="nx">http</span><span class="p">:</span><span class="c1">//www.panticz.de/pxe/preseed/preseed.seed locale=en_US console-setup/layoutcode=de netcfg/choose_interface=eth0 debconf/priority=critical --</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">initrd.gz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;debian-installer-amd64.iso&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">debian</span><span class="na">-installer-amd64.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">linux</span> <span class="n">vga</span><span class="o">=</span><span class="nx">normal</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">initrd.gz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;BackTrack 4&quot;</span> <span class="p">{</span>
+<span class="nx">linux</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">bt4</span><span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">vmlinuz</span> <span class="n">BOOT</span><span class="o">=</span><span class="nx">casper</span> <span class="n">boot</span><span class="o">=</span><span class="nx">casper</span> <span class="nx">nopersistent</span> <span class="nx">rw</span> <span class="n">vga</span><span class="o">=</span><span class="mh">0x317</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">bt4</span><span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">initrd.gz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;Memory test (memtest86+)&quot;</span> <span class="p">{</span>
+<span class="nx">linux16</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nb">img</span><span class="p">/</span><span class="nx">memtest86</span><span class="o">+</span><span class="bp">.</span><span class="nx">bin</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;BackTrack ERR&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">bt4</span><span class="na">-pre-final.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">vmlinuz</span> <span class="nx">find_iso</span><span class="p">/</span><span class="nb">filename</span><span class="o">=/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">bt4</span><span class="na">-pre-final.iso</span> <span class="n">BOOT</span><span class="o">=</span><span class="nx">casper</span> <span class="n">boot</span><span class="o">=</span><span class="nx">casper</span> <span class="nx">nopersistent</span> <span class="nx">rw</span> <span class="n">vga</span><span class="o">=</span><span class="mh">0x317</span><span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">initrd.gz</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;XBMC ERR&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">XBMCLive.iso</span>
+<span class="nx">linux</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">vmlinuz</span> <span class="n">boot</span><span class="o">=</span><span class="nx">cd</span> <span class="n">isofrom</span><span class="o">=</span><span class="p">/</span><span class="nx">dev</span><span class="p">/</span><span class="nx">sda1</span><span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">XBMCLive.iso</span> <span class="n">xbmc</span><span class="o">=</span><span class="nx">nvidia</span><span class="p">,</span><span class="nx">nodiskmount</span><span class="p">,</span><span class="nx">tempfs</span><span class="p">,</span><span class="nx">setvolume</span> <span class="n">loglevel</span><span class="o">=</span><span class="mi">0</span> <span class="o">--</span>
+<span class="nx">initrd</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">initrd0.img</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;netboot.me&quot;</span> <span class="p">{</span>
+<span class="nx">loopback</span> <span class="k">loop</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">iso</span><span class="p">/</span><span class="nx">netbootme.iso</span>
+<span class="nx">linux16</span> <span class="p">(</span><span class="k">loop</span><span class="p">)/</span><span class="nx">GPXE.KRN</span>
+<span class="p">}</span>
+
+<span class="nx">menuentry</span> <span class="s2">&quot;debian installer amd64 netboot XEN pressed&quot;</span> <span class="p">{</span>
+<span class="nx">linux</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">debian</span><span class="p">/</span><span class="nx">linux</span> <span class="nx">auto</span> <span class="nx">preseed</span><span class="p">/</span><span class="nb">url</span><span class="o">=</span><span class="nx">http</span><span class="p">:</span><span class="c1">//www.panticz.de/pxe/preseed/xen.seed locale=en_US console-setup/layoutcode=de netcfg/choose_interface=eth0 debconf/priority=critical --</span>
+<span class="nx">initrd</span> <span class="p">/</span><span class="nx">boot</span><span class="p">/</span><span class="nx">debian</span><span class="p">/</span><span class="nx">initrd.gz</span>
+<span class="p">}</span>
+<span class="nx">EOF</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+    
+  </article>
+</section>
+        <section id="extras" class="body">
+                                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://leeleilei.github.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+                                                </ul>
+                </div><!-- /.social -->
+                </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
