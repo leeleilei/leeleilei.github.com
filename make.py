@@ -36,7 +36,8 @@ def make_pages():
 
         #generate the files
         html = md.markdown(open(md_page, 'r').read().decode('utf-8'))
-        html, errors = tidylib.tidy_document(html)
+        html, errors = tidylib.tidy_document(html,
+                                             options={'doctype':'strict'})
         open(html_page, 'w+').write(html.encode('utf-8'))
         print '... processed %s ' % html_page
 
@@ -52,7 +53,8 @@ def make_index():
     index_template = jj.Template(index_html_tmp)
     #replace the index articles
     index_html = index_template.render(articles = html_pages)
-    index_html, errors = tidylib.tidy_document(index_html)
+    index_html, errors = tidylib.tidy_document(index_html, 
+                                               options={'doctype':'strict'})
 
     open(INDEX_HTML, 'w+').write(index_html)
     print '... processed %s home page' % INDEX_HTML
