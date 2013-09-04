@@ -1,0 +1,81 @@
+<h1>烦恼</h1>
+<p>如果你的工作中有这样的场景，请义无反顾的使用 gawk 和 shell toolkit</p>
+<ol>
+<li>我有一个2G大小的文件要处理，</li>
+<li>我担心处理耗时过大，内存泄漏</li>
+<li>我想提取其中的几列</li>
+<li>如果所在行有bala-bala，我并不想提取</li>
+<li>其中有些行并不是CSV结构，我想格式化</li>
+<li>我想格式化这个类似XML结构的文本</li>
+<li>我想快速排序</li>
+<li>我想按第2,3列排序</li>
+<li>我想对比两个文件的不同</li>
+<li>我想分割文件</li>
+<li>我想合并文件</li>
+</ol>
+<h1>对比不同</h1>
+<pre><code>    # diff -y --suppress-common-lines foo1.txt foo2.txt
+    line3 line3 value2       | line2 line2 value
+                             &gt; line3 line3 value3
+                             &gt; line4 line4 value4
+                             &gt; line5 line5 value5
+</code></pre>
+<h1>提取某些<code>行值</code></h1>
+<h2>提取ISDN</h2>
+<pre><code>    # cat huabiao.txt | grep -oP "MSISDN=[0-9]{10,13}" | sed 's/MSISDN=//g' &gt; isdn
+</code></pre>
+<h2>提取ISDN，IMSI和PDP</h2>
+<pre><code>    # cat huawei_01.txt | awk '{
+        if($0 ~ /MSISDN=/) {
+            isdn=$0
+        }
+        if($0 ~ /PDPCNTX=/) {
+            pdp=$0
+        }
+        if($0 ~ /SUBEND/) {
+            print isdn,pdp
+        }
+        isdn=""
+        pdp=""
+    }' &gt; isdn.pdp.txt
+</code></pre>
+<h2>Multiple PDP</h2>
+<pre><code>    # cat huawei_01.txt | awk '{
+        if($0 ~ /MSISDN=/) {
+            isdn=$0
+        }
+
+        if($0 ~ /PDPCNTX=/) {
+            if(len(pdp)==0) ｛
+                pdp=$0
+            }
+            else {
+                pdp=pdp" "$0
+            }
+        }
+
+        if($0 ~ /SUBEND/) {
+            print isdn,pdp
+        }
+        isdn=""
+        pdp=""
+    }' &gt; isdn.pdp.txt
+</code></pre>
+<p><strong>Note: 由于gawk可以无声名的使用变量，并且是pattern重复处理stream，一定记得将关键变量初始话，否则上一条记录的变量带给下一条记录。</strong></p>
+<h1>排序并排除重复记录</h1>
+<pre><code>    # sort -u foo.txt &gt; foo.new
+    # sort foo.txt |uniq &gt; foo.new
+    # sort -t "," -k2 -u foo.txt
+</code></pre>
+<h1>KI变换</h1>
+<p>The source,</p>
+<pre><code>    123120123456789 abcdef0123456789abcdef0123456789 1 2 3
+</code></pre>
+<p>The target,</p>
+<pre><code>    123120123456789 abcdef0123456789abcdef0123456789 3 2 1 0 @ 0
+</code></pre>
+<p>The transform,</p>
+<pre><code>    # cat e.txt | awk ‘{print $1,$2,$5,$4,$3,”0 @ 0″}’ &gt; h.txt &amp;
+</code></pre>
+<hr />
+<p>Last Update: Sep 6, 2013 23:22 @Manila</p>
