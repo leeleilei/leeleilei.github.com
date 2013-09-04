@@ -9,40 +9,59 @@ import os
 import sys
 import jinja2 as jj
 import markdown as md
+import tidylib
 
 CURRENT_PATH = os.path.dirname(__file__)
 PAGES_PATH = os.path.join(CURRENT_PATH, 'pages')
 INDEX_MD = 'index.md'
 INDEX_HTML = 'index.html'
 
-#get the list of markdown files in ./pages
-md_pages = [page for page in os.listdir(PAGES_PATH) 
-            if page.endswith('md')]
+def make_pages():
+    '''update the ./pages markdown files'''
 
-#generate the html
-for md_page in md_pages:
-    md_page = os.path.join(PAGES_PATH, md_page)
-    html_page = os.path.splitext(md_page)[0] + '.html'
+    #get the list of markdown files in ./pages
+    md_pages = [page for page in os.listdir(PAGES_PATH) 
+                if page.endswith('md')]
 
-    #remove all old files
-    try:
-        os.remove(html_page)
-    except OSError:
-        pass
+    #generate the html
+    for md_page in md_pages:
+        md_page = os.path.join(PAGES_PATH, md_page)
+        html_page = os.path.splitext(md_page)[0] + '.html'
 
-    #generate the files
-    md.markdownFromFile(input = md_page, output = html_page, encoding = 'utf-8')
+        #remove all old files
+        try:
+            os.remove(html_page)
+        except OSError:
+            pass
 
-#get the list of html files
-html_pages = [page for page in os.listdir(PAGES_PATH) 
-              if page.endswith('html')]
+        #generate the files
+        html = md.markdown(open(md_page, 'r').read().decode('utf-8'))
+        html, errors = tidylib.tidy_document(html)
+        open(html_page, 'w+').write(html.encode('utf-8'))
+        print '... processed %s ' % html_page
 
-#generate the index html
-index_html_tmp = md.markdown(open(INDEX_MD, 'r').read())
-index_template = jj.Template(index_html_tmp)
-#replace the index articles
-index_html = index_template.render(articles = html_pages)
+def make_index():
+    '''update the index.md'''
 
-open(INDEX_HTML, 'w+').write(index_html)
+    #get the list of html files
+    html_pages = [page for page in os.listdir(PAGES_PATH) 
+                  if page.endswith('html')]
 
-print 'update done'
+    #generate the index html
+    index_html_tmp = md.markdown(open(INDEX_MD, 'r').read())
+    index_template = jj.Template(index_html_tmp)
+    #replace the index articles
+    index_html = index_template.render(articles = html_pages)
+    index_html, errors = tidylib.tidy_document(index_html)
+
+    open(INDEX_HTML, 'w+').write(index_html)
+    print '... processed %s home page' % INDEX_HTML
+
+def main():
+    print '# update begins #'
+    make_pages()
+    make_index()
+    print '# update done #'
+
+if __name__ == '__main__':
+    main()
