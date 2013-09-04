@@ -1,0 +1,94 @@
+# Headache
+If you were suffering below boring issues, I recommend you using "gawk and shell", no excuse.
+
+1. I got a 2G text file
+2. I am warried about the memory leak or overflow
+3. I need extract several column of text file
+4. If the line match something, actually I don't need put in column result
+5. I need transform the structured text to CSV
+6. I need fast sort
+7. I need sort by specific columns
+8. I need get the differences of 2 files
+9. I want split
+10. I want combination
+
+# Compare
+
+        # diff -y --suppress-common-lines foo1.txt foo2.txt
+        line3 line3 value2       | line2 line2 value
+                                 > line3 line3 value3
+                                 > line4 line4 value4
+                                 > line5 line5 value5
+    
+
+# Extract `lines`
+
+## Extract ISDN
+    
+        # cat huabiao.txt | grep -oP "MSISDN=[0-9]{10,13}" | sed 's/MSISDN=//g' > isdn
+    
+## Extract ISDN，IMSI and PDP
+    
+        # cat huawei_01.txt | awk '{
+            if($0 ~ /MSISDN=/) {
+                isdn=$0
+            }
+            if($0 ~ /PDPCNTX=/) {
+                pdp=$0
+            }
+            if($0 ~ /SUBEND/) {
+                print isdn,pdp
+            }
+            isdn=""
+            pdp=""
+        }' > isdn.pdp.txt
+    
+
+## Multiple PDP
+    
+    
+        # cat huawei_01.txt | awk '{
+            if($0 ~ /MSISDN=/) {
+                isdn=$0
+            }
+        
+            if($0 ~ /PDPCNTX=/) {
+                if(len(pdp)==0) ｛
+                    pdp=$0
+                }
+                else {
+                    pdp=pdp" "$0
+                }
+            }
+        
+            if($0 ~ /SUBEND/) {
+                print isdn,pdp
+            }
+            isdn=""
+            pdp=""
+        }' > isdn.pdp.txt
+    
+
+__Note: gawk use implicit varible, and the pattern is gonna applied on **each line**, remember initialize the **reused** varible at end of pattern, such as isdn, imsi, pdp in above sample__
+
+# Sort
+
+        # sort -u foo.txt > foo.new
+        # sort foo.txt |uniq > foo.new
+        # sort -t "," -k2 -u foo.txt
+
+# KI Transform
+The source: `e.txt`,
+
+        123120123456789 abcdef0123456789abcdef0123456789 1 2 3
+    
+The target: `h.txt`,
+    
+        123120123456789 abcdef0123456789abcdef0123456789 3 2 1 0 @ 0
+    
+The transformer,
+
+        # cat e.txt | awk '{print $1,$2,$5,$4,$3,0 @ 0}' > h.txt
+    
+---
+Last Update: Sep 6, 2013 23:22 @Manila
