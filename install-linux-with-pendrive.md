@@ -1,3 +1,8 @@
+Title: My first blog
+Date: 2013-05-18 21:00:00
+Last Updated: 2013-09-06 23:10
+Category: Linux
+
 __Note: I would recommend you use the [unetbootin][unetbootin] to make the Linux bootable USB drive, since it is more easier (GUI) and convinience (auto-download distribution CD, auto-make boot flags). The below process just reach the same target, helping you understand what happened during the `unetbootin` process.__
 
 ---
