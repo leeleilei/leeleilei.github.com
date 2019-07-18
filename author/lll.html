@@ -1,40 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>Zen of BTC - Articles by LLL</title>
         <meta charset="utf-8" />
+        <title>Zen of BTC - LLL</title>
+        <link rel="stylesheet" href="http://btcz.im/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="http://btcz.im/">Zen of BTC <strong></strong></a></h1>
+                <h1><a href="http://btcz.im/">Zen of BTC </a></h1>
+                <nav><ul>
+                    <li><a href="http://btcz.im/category/misc.html">misc</a></li>
+                </ul></nav>
         </header><!-- /#banner -->
-        <nav id="menu"><ul>
-            <li><a href="http://btcz.im/category/misc.html">misc</a></li>
-        </ul></nav><!-- /#menu -->
-<section id="content">
-<h2>Articles by LLL</h2>
 
-<ol id="post-list">
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="http://btcz.im/install-linux-with-pendrive.html" rel="bookmark" title="Permalink to Install Linux with Pendrive">Install Linux with Pendrive</a></h2> </header>
-                <footer class="post-info">
-                    <time class="published" datetime="2013-05-18T21:00:00+08:00"> 六 18 五月 2013 </time>
-                    <address class="vcard author">By
-                        <a class="url fn" href="http://btcz.im/author/lll.html">LLL</a>
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> <p>Last Updated: 2013-09-06 23:10
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="http://btcz.im/install-linux-with-pendrive.html">Install Linux with Pendrive</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2013-05-18T21:00:00+08:00">
+                Published: 六 18 五月 2013
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://btcz.im/author/lll.html">LLL</a>
+        </address>
+<p>In <a href="http://btcz.im/category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info --><p>Last Updated: 2013-09-06 23:10
 Category: Linux</p>
-<p><strong>Note: I would recommend you use the <a href="http://unetbootin.sourceforge.net">unetbootin</a> to make the Linux bootable USB drive, since it is more easier (GUI) and convinience (auto-download distribution CD, auto-make boot flags). The below process just reach the same target, helping you understand what happened during …</strong></p> </div><!-- /.entry-content -->
-        </article></li>
-</ol><!-- /#posts-list -->
-</section><!-- /#content -->
+<p><strong>Note: I would recommend you use the <a href="http://unetbootin.sourceforge.net">unetbootin</a> to make the Linux bootable USB drive, since it is more easier (GUI) and convinience (auto-download distribution CD, auto-make boot flags). The below process just reach the same target, helping you understand what happened during the <code>unetbootin</code> process.</strong></p>
+<hr>
+<p>In the very beginning, I thought it was really difficult to install a
+linux from a USB, since it requires GRUB, kinds of alternative CD
+media, and a "special" cd boot vmlinuz and initrd.gz files. Finally I
+realise the power of GRUB, and it could boot anything, event a ISO
+file.</p>
+<h1>The Media</h1>
+<p>You need a portable USB drive or pen drive, whose capacity is larger
+than 1GB, and a computer with capability of boot sequence selection</p>
+<p>Download the Linux distribution CD image.</p>
+<h1>Partition it</h1>
+<ol>
+<li>
+<p>Identify the USB device</p>
+<div class="highlight"><pre><span></span><span class="o">#</span> <span class="n">dmesg</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>Use <code>fdisk</code> to format the partition</p>
+<div class="highlight"><pre><span></span># <span class="nv">fdisk</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdb</span> <span class="ss">(</span><span class="nv">run</span> <span class="nv">it</span> <span class="nv">as</span> <span class="nv">root</span> <span class="nv">or</span> <span class="nv">sudo</span> <span class="nv">fdisk</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdb</span><span class="ss">)</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">n</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">create</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">partition</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">p</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">create</span> <span class="nv">the</span> <span class="nv">primary</span> <span class="nv">partition</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">1</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">create</span> <span class="nv">the</span> <span class="nv">number</span> <span class="mi">1</span> <span class="nv">primary</span> <span class="nv">partion</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">p</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">view</span> <span class="nv">the</span> <span class="nv">current</span> <span class="nv">table</span>, <span class="k">then</span> <span class="nv">you</span> <span class="nv">shall</span> <span class="nv">get</span> <span class="nv">the</span> <span class="nv">sdb1</span> <span class="nv">now</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">a</span><span class="s2">&quot;</span>, <span class="k">then</span> <span class="s2">&quot;</span><span class="s">1</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">toggle</span> <span class="nv">the</span> <span class="nv">sdb1</span> <span class="nv">as</span> <span class="nv">bootable</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">t</span><span class="s2">&quot;</span>, <span class="k">then</span> <span class="s2">&quot;</span><span class="s">c</span><span class="s2">&quot;</span> <span class="nv">to</span> <span class="nv">change</span> <span class="nv">the</span> <span class="nv">system</span> <span class="nv">id</span> <span class="nv">as</span> <span class="s2">&quot;</span><span class="s">windows 95</span><span class="s2">&quot;</span>
+<span class="nv">press</span> <span class="s2">&quot;</span><span class="s">w</span><span class="s2">&quot;</span>, <span class="nv">save</span> <span class="nv">all</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">partition</span> <span class="nv">information</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">USB</span> <span class="nv">drive</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h1>Prepare the file system</h1>
+<p>Using the ISO file to install the Linux, you shall use a "FAT32" partition to
+save the ISO file, otherwise the ISO couldn't be seeked by the GRUB loader</p>
+<div class="highlight"><pre><span></span>    # <span class="nv">mkfs</span> <span class="o">-</span><span class="nv">t</span> <span class="nv">vfat</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdb1</span> <span class="ss">(</span><span class="nv">replace</span> <span class="nv">sdb1</span> <span class="nv">with</span> <span class="nv">your</span> <span class="nv">real</span> <span class="nv">media</span> <span class="nv">partition</span>, <span class="k">do</span> <span class="nv">NOT</span> <span class="nv">be</span> <span class="nv">wrong</span><span class="ss">)</span>
+    # <span class="nv">mount</span> <span class="o">/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sdb1</span> <span class="o">/</span><span class="nv">mnt</span>
+    # <span class="nv">cp</span> <span class="nv">ubuntu</span><span class="o">-</span><span class="mi">11</span>.<span class="mi">04</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">i386</span>.<span class="nv">iso</span> <span class="o">/</span><span class="nv">mnt</span>
+</pre></div>
+
+
+<p>or you can copy it from windows system, since the fat32 partition is working
+under windows.</p>
+<h1>Install the GRUB</h1>
+<p>GRUB is the bootloader, which will control how you start the OS, by ISO or by normal media</p>
+<div class="highlight"><pre><span></span>    <span class="o">#</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb1</span> <span class="o">/</span><span class="n">mnt</span>
+    <span class="o">#</span> <span class="n">grub</span><span class="o">-</span><span class="n">install</span> <span class="c1">--root-directory=/mnt /dev/sdb (replace sdb with your real USB drive id)</span>
+</pre></div>
+
+
+<p>Now you got a bootable USB stick bearing the ubuntu installation media.</p>
+<h1>Begin Linux Boot</h1>
+<ol>
+<li>Plugin your USB dirve and boot your system</li>
+<li>Press "F12" and select boot from USB/Flash drive</li>
+<li>then you will get a "grub&gt;" prompt and stopped, that's what we wanna</li>
+<li>
+<p>Configure the boot parameter</p>
+<div class="highlight"><pre><span></span><span class="n">grub</span><span class="o">&gt;</span> <span class="n">ls</span>
+</pre></div>
+
+
+<p>you will get a list of partitions including your local hard disk partition and
+your USB partition. That's easily identified by the count of partition number,
+like (hd0,1)(hd1,1)(hd1,2),(hd1,3),etc. we only have 1 partition on USB, so
+(hd0,1) is the USB partition</p>
+<div class="highlight"><pre><span></span><span class="nv">grub</span><span class="o">&gt;</span> <span class="nv">set</span> <span class="nv">root</span><span class="o">=</span><span class="s1">&#39;</span><span class="s">(hd0,1)</span><span class="s1">&#39;</span>
+<span class="nv">grub</span><span class="o">&gt;</span> <span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">ubuntu</span><span class="o">-</span><span class="mi">11</span>.<span class="mi">04</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">i386</span>.<span class="nv">iso</span>
+<span class="nv">grub</span><span class="o">&gt;</span> <span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">casper</span><span class="o">/</span><span class="nv">vmlinuz</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">iso</span><span class="o">-</span><span class="nv">scan</span><span class="o">/</span><span class="nv">filename</span><span class="o">=/</span><span class="nv">ubuntu</span><span class="o">-</span><span class="mi">11</span>.<span class="mi">04</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">i386</span>.<span class="nv">iso</span>
+<span class="nv">grub</span><span class="o">&gt;</span> <span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">casper</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">lz</span>
+<span class="nv">grub</span><span class="o">&gt;</span> <span class="nv">boot</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h1>Install the Linux</h1>
+<p>After you boot into the <code>live CD desktop</code>, you can use the <code>install to harddisk</code> function to install the Linux copy to your local HDD or another USB drive.</p>
+<h1>Notes</h1>
+<ol>
+<li>
+<p><code>loop</code> device</p>
+<p>The loopback command will assign the "loop" as themedia file (iso)</p>
+<p>Use the "TAB" key to let the <code>GRUB</code> to "seek" the possible files</p>
+<p>E.g. initrd file here is the <code>initrd.lz</code> not <code>initrd.gz</code>, you can
+use <code>TAB</code> after you typing the <code>initrd.</code>. The GRUB will
+automatically seek the initrd.lz**</p>
+</li>
+<li>
+<p>GRUB is so powerful to read ISO or file system right before system
+   "booted"</p>
+</li>
+<li>Use <code>FAT32</code> file system bearing the ISO file</li>
+<li>You can using your existing <code>grub.cfg</code> (live system) to add the
+   installation menuentry.</li>
+<li>Do NOT try to install a new system on the same USB drive where your
+   iso is</li>
+<li>More examples of boot entry<div class="highlight"><pre><span></span><span class="nv">cat</span> <span class="o">&lt;&lt;</span><span class="nv">EOF</span><span class="o">&gt;</span> <span class="o">/</span><span class="nv">mnt</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">grub</span><span class="o">/</span><span class="nv">grub</span>.<span class="nv">cfg</span>
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">Ubuntu Live 9.10 32bit</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">ubuntu</span><span class="o">-</span><span class="mi">9</span>.<span class="mi">10</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">i386</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">casper</span><span class="o">/</span><span class="nv">vmlinuz</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">iso</span><span class="o">-</span><span class="nv">scan</span><span class="o">/</span><span class="nv">filename</span><span class="o">=/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">ubuntu</span><span class="o">-</span><span class="mi">9</span>.<span class="mi">10</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">i386</span>.<span class="nv">iso</span> <span class="nv">noeject</span> <span class="nv">noprompt</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">casper</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">lz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">Ubuntu Live 9.10 64bit</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">ubuntu</span><span class="o">-</span><span class="mi">9</span>.<span class="mi">10</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">amd64</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">casper</span><span class="o">/</span><span class="nv">vmlinuz</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">iso</span><span class="o">-</span><span class="nv">scan</span><span class="o">/</span><span class="nv">filename</span><span class="o">=/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">ubuntu</span><span class="o">-</span><span class="mi">9</span>.<span class="mi">10</span><span class="o">-</span><span class="nv">desktop</span><span class="o">-</span><span class="nv">amd64</span>.<span class="nv">iso</span> <span class="nv">noeject</span> <span class="nv">noprompt</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">casper</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">lz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">Grml small 2009.10</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">grml</span><span class="o">-</span><span class="nv">small_2009</span>.<span class="mi">10</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">grmlsmall</span><span class="o">/</span><span class="nv">linux26</span> <span class="nv">findiso</span><span class="o">=/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">grml</span><span class="o">-</span><span class="nv">small_2009</span>.<span class="mi">10</span>.<span class="nv">iso</span> <span class="nv">apm</span><span class="o">=</span><span class="nv">power</span><span class="o">-</span><span class="nv">off</span> <span class="nv">lang</span><span class="o">=</span><span class="nv">us</span> <span class="nv">vga</span><span class="o">=</span><span class="mi">791</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">live</span> <span class="nv">nomce</span> <span class="nv">noeject</span> <span class="nv">noprompt</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">grmlsmall</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">gz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">tinycore</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">tinycore_2</span>.<span class="mi">3</span>.<span class="mi">1</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">bzImage</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">tinycore</span>.<span class="nv">gz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">Netinstall 32 preseed</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">mini</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">linux</span> <span class="nv">auto</span> <span class="nv">url</span><span class="o">=</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">panticz</span>.<span class="nv">de</span><span class="o">/</span><span class="nv">pxe</span><span class="o">/</span><span class="nv">preseed</span><span class="o">/</span><span class="nv">preseed</span>.<span class="nv">seed</span> <span class="nv">locale</span><span class="o">=</span><span class="nv">en_US</span> <span class="nv">console</span><span class="o">-</span><span class="nv">setup</span><span class="o">/</span><span class="nv">layoutcode</span><span class="o">=</span><span class="nv">de</span> <span class="nv">netcfg</span><span class="o">/</span><span class="nv">choose_interface</span><span class="o">=</span><span class="nv">eth0</span> <span class="nv">debconf</span><span class="o">/</span><span class="nv">priority</span><span class="o">=</span><span class="nv">critical</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">gz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">debian-installer-amd64.iso</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">debian</span><span class="o">-</span><span class="nv">installer</span><span class="o">-</span><span class="nv">amd64</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">linux</span> <span class="nv">vga</span><span class="o">=</span><span class="nv">normal</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">gz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">BackTrack 4</span><span class="s2">&quot;</span> {
+<span class="nv">linux</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">bt4</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">vmlinuz</span> <span class="nv">BOOT</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">nopersistent</span> <span class="nv">rw</span> <span class="nv">vga</span><span class="o">=</span><span class="mi">0</span><span class="nv">x317</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">bt4</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">gz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">Memory test (memtest86+)</span><span class="s2">&quot;</span> {
+<span class="nv">linux16</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">img</span><span class="o">/</span><span class="nv">memtest86</span><span class="o">+</span>.<span class="nv">bin</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">BackTrack ERR</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">bt4</span><span class="o">-</span><span class="nv">pre</span><span class="o">-</span><span class="nv">final</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">vmlinuz</span> <span class="nv">find_iso</span><span class="o">/</span><span class="nv">filename</span><span class="o">=/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">bt4</span><span class="o">-</span><span class="nv">pre</span><span class="o">-</span><span class="nv">final</span>.<span class="nv">iso</span> <span class="nv">BOOT</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">casper</span> <span class="nv">nopersistent</span> <span class="nv">rw</span> <span class="nv">vga</span><span class="o">=</span><span class="mi">0</span><span class="nv">x317</span><span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">gz</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">XBMC ERR</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">XBMCLive</span>.<span class="nv">iso</span>
+<span class="nv">linux</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">vmlinuz</span> <span class="nv">boot</span><span class="o">=</span><span class="nv">cd</span> <span class="nv">isofrom</span><span class="o">=/</span><span class="nv">dev</span><span class="o">/</span><span class="nv">sda1</span><span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">XBMCLive</span>.<span class="nv">iso</span> <span class="nv">xbmc</span><span class="o">=</span><span class="nv">nvidia</span>,<span class="nv">nodiskmount</span>,<span class="nv">tempfs</span>,<span class="nv">setvolume</span> <span class="nv">loglevel</span><span class="o">=</span><span class="mi">0</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">initrd0</span>.<span class="nv">img</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">netboot.me</span><span class="s2">&quot;</span> {
+<span class="nv">loopback</span> <span class="k">loop</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">iso</span><span class="o">/</span><span class="nv">netbootme</span>.<span class="nv">iso</span>
+<span class="nv">linux16</span> <span class="ss">(</span><span class="k">loop</span><span class="ss">)</span><span class="o">/</span><span class="nv">GPXE</span>.<span class="nv">KRN</span>
+}
+
+<span class="nv">menuentry</span> <span class="s2">&quot;</span><span class="s">debian installer amd64 netboot XEN pressed</span><span class="s2">&quot;</span> {
+<span class="nv">linux</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">debian</span><span class="o">/</span><span class="nv">linux</span> <span class="nv">auto</span> <span class="nv">preseed</span><span class="o">/</span><span class="nv">url</span><span class="o">=</span><span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">panticz</span>.<span class="nv">de</span><span class="o">/</span><span class="nv">pxe</span><span class="o">/</span><span class="nv">preseed</span><span class="o">/</span><span class="nv">xen</span>.<span class="nv">seed</span> <span class="nv">locale</span><span class="o">=</span><span class="nv">en_US</span> <span class="nv">console</span><span class="o">-</span><span class="nv">setup</span><span class="o">/</span><span class="nv">layoutcode</span><span class="o">=</span><span class="nv">de</span> <span class="nv">netcfg</span><span class="o">/</span><span class="nv">choose_interface</span><span class="o">=</span><span class="nv">eth0</span> <span class="nv">debconf</span><span class="o">/</span><span class="nv">priority</span><span class="o">=</span><span class="nv">critical</span> <span class="o">--</span>
+<span class="nv">initrd</span> <span class="o">/</span><span class="nv">boot</span><span class="o">/</span><span class="nv">debian</span><span class="o">/</span><span class="nv">initrd</span>.<span class="nv">gz</span>
+}
+<span class="nv">EOF</span>
+</pre></div>
+
+
+</li>
+</ol>
+<hr>
+<p>Last Updated: Sep 06, 2013 23:10 Manila</p><p>There are <a href="http://btcz.im/install-linux-with-pendrive.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+        </section><!-- /#extras -->
+
         <footer id="contentinfo" class="body">
                 <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
-                which takes great advantage of <a href="http://python.org">Python</a>.
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
                 </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
+
+<script type="text/javascript">
+    var disqus_shortname = 'btczim';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
 </body>
 </html>
