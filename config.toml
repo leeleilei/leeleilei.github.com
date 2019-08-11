@@ -1,0 +1,4 @@
+baseURL = "http://btcz.im"
+languageCode = "en-us"
+title = "Zen of Bitcoin"
+theme = "hugo-classic"

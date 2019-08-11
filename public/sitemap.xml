@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://btcz.im/posts/install-linux-with-pen-drive/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/posts/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
