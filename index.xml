@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zen of Bitcoin</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Zen of Bitcoin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Aug 2019 20:16:39 +0800</lastBuildDate>
+    
+	<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello</title>
+      <link>http://localhost:1313/posts/hello/</link>
+      <pubDate>Sun, 11 Aug 2019 20:16:39 +0800</pubDate>
+      
+      <guid>http://localhost:1313/posts/hello/</guid>
+      <description> this is a hello page </description>
+    </item>
+    
+    <item>
+      <title>Install Linux With Pen Drive</title>
+      <link>http://localhost:1313/posts/install-linux-with-usb-drive/</link>
+      <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
+      
+      <guid>http://localhost:1313/posts/install-linux-with-usb-drive/</guid>
+      <description>Note: I would recommend you use the unetbootin to make the Linux bootable USB drive, since it is more easier (GUI) and convinience (auto-download distribution CD, auto-make boot flags). The below process just reach the same target, helping you understand what happened during the unetbootin process.
+In the very beginning, I thought it was really difficult to install a linux from a USB, since it requires GRUB, kinds of alternative CD media, and a &amp;ldquo;special&amp;rdquo; cd boot vmlinuz and initrd.</description>
+    </item>
+    
+  </channel>
+</rss>
