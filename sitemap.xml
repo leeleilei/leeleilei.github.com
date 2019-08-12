@@ -3,29 +3,40 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://localhost:36223/posts/install-linux-with-usb-drive/</loc>
+    <loc>http://btcz.im/pages/about/</loc>
+    <lastmod>2019-08-12T17:20:54+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/posts/install-linux-with-usb-drive/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:36223/categories/</loc>
+    <loc>http://btcz.im/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:36223/posts/</loc>
+    <loc>http://btcz.im/pages/</loc>
+    <lastmod>2019-08-12T17:20:54+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/posts/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:36223/tags/</loc>
+    <loc>http://btcz.im/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:36223/</loc>
-    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+    <loc>http://btcz.im/</loc>
+    <lastmod>2019-08-12T17:20:54+08:00</lastmod>
     <priority>0</priority>
   </url>
   
