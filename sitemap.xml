@@ -13,7 +13,31 @@
   </url>
   
   <url>
+    <loc>http://btcz.im/tags/boot/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://btcz.im/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/tags/fdisk/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/tags/grub/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://btcz.im/tags/linux/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -31,6 +55,7 @@
   
   <url>
     <loc>http://btcz.im/tags/</loc>
+    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
     <priority>0</priority>
   </url>
   
