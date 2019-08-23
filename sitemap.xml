@@ -3,62 +3,62 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://btcz.im/pages/about/</loc>
+    <loc>http://localhost:1313/pages/about/</loc>
     <lastmod>2019-08-12T17:20:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/pages/</loc>
+    <loc>http://localhost:1313/pages/</loc>
     <lastmod>2019-08-12T17:20:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2019-08-12T17:20:54+08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/tags/boot/</loc>
+    <loc>http://localhost:1313/tags/boot/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/tags/fdisk/</loc>
+    <loc>http://localhost:1313/tags/fdisk/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/tags/grub/</loc>
+    <loc>http://localhost:1313/tags/grub/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/posts/install-linux-with-usb-drive/</loc>
+    <loc>http://localhost:1313/posts/install-linux-with-usb-drive/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/tags/linux/</loc>
+    <loc>http://localhost:1313/tags/linux/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://btcz.im/pages/ieltspeakit/</loc>
+    <loc>http://localhost:1313/pages/ieltspeakit/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://btcz.im/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
   
 </urlset>
