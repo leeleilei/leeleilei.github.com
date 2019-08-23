@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>IELTS Speaking Test Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="http://btcz.im/assets/ieltspeakitstyle.css">
+  </head>
+  <body>
+  	<h1>IELTS Speaking Test Assistant - Part 1</h1> 
+	<div>
+		<p>Thanks to <a href="https://github.com/higuma/web-audio-recorder-js" target="_blank">WebAudioRecorder.js</a></p>
+		<p>This project is open-source at <a href="https://github.com/leeleilei/leeleilei.github.com">my github</a>. Welcome to contributing the IELTS questions.</p>
+	<p>Save audio file as
+	<select id="encodingTypeSelect">
+	<option value="wav">Waveform Audio (.wav)</option>
+	<option value="mp3">MP3 (MPEG-1 Audio Layer III) (.mp3)</option>
+	<option value="ogg">Ogg Vorbis (.ogg)</option>
+	</select>
+	</p>
+	</div>
+
+	<div id="controls">
+			<button id="next" onclick="location.reload()">Next</button>
+			<button id="recordButton">Record</button>
+			<button id="stopButton" disabled>Stop</button>
+	</div>
+
+	<div id="accordion">
+		
+	</div>
+
+	<h3>Recordings</h3>
+	<ol id="recordingsList"></ol>
+  
+	<div id="formats"></div>
+
+	<pre id="log"></pre>
+
+
+	  
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="http://btcz.im/assets/ieltspeakit/WebAudioRecorder.min.js"></script>
+	<script src="http://btcz.im/assets/ieltspeakit/app.js"></script>
+	<script>
+		var url = "http://btcz.im/assets/ieltspeakitq/p1.txt";
+		$.ajax(url).done(function(data) {
+			var myQs = data.split("--\n");
+			x = Math.floor(Math.random() * Math.floor(myQs.length));
+			myQ = myQs[x].split("\n");
+			
+			myQ.forEach(myFunc);
+
+			function myFunc(item, index){
+				n = index + 1;
+				document.getElementById("accordion").innerHTML +=  "<h3>Question " + n + "</h3><div><p>" + item + "</p></div>"
+			}
+			$( function() {
+  				$("#accordion").accordion();
+		});
+		
+		});
+
+
+		$("#log").hide();
+	</script>
+
+<script src="https://utteranc.es/client.js"
+repo="leeleilei/leeleilei.github.com"
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+  <script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10&v=2"></' + 'script>')</script></body>
+</html>
