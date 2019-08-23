@@ -38,7 +38,7 @@ In the very beginning, I thought it was really difficult to install a linux from
       <guid>http://localhost:1313/pages/ieltspeakit/</guid>
       <description>IELTS Speaking Test Assistant   IELTS Speaking Test Assistant - Part 1  Thanks to WebAudioRecorder.js
 This project is open-source at my github. Welcome to contributing the IELTS questions.
-Save audio file as Waveform Audio (.wav) MP3 (MPEG-1 Audio Layer III) (.mp3) Ogg Vorbis (.ogg)   Next Record Stop   Recordings         var url = &#34;http://btcz.im/assets/ieltspeakitq/p1.txt&#34;; $.ajax(url).done(function(data) { var myQs = data.</description>
+Save audio file as Waveform Audio (.wav) MP3 (MPEG-1 Audio Layer III) (.mp3) Ogg Vorbis (.ogg)   Next Record Stop   Recordings         var url = &#34;https://btcz.im/assets/ieltspeakitq/p1.txt&#34;; $.ajax(url).done(function(data) { var myQs = data.</description>
     </item>
     
   </channel>
