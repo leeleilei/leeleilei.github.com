@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <title>Media Recorder Polyfill</title>
     <link rel="shortcut icon" href="./favicon.ico">
-    <meta content="width=device-width" name="viewport">
     <meta name="theme-color" content="#00e5d2">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+
+
     <script src="polyfill.js"></script>
 
     <style>
@@ -141,10 +145,12 @@
 
 <body>
         <h1>IELTS Speaking Test Assistant - Part 1</h1> 
+        <div class="collapse">
+
+        </div>
     <main>
-        <p><a href="https://github.com/ai/audio-recorder-polyfill">Audio
-                Recorder Polyfill</a> is a MediaRecorder polyfill to&nbsp;record audio
-            in Edge and Safari. See <a href="https://ai.github.io/audio-recorder-polyfill/api">API</a>.</p>
+
+
         <div id="controls"><button id="record" disabled="" autocomplete="off" title="Record"><svg viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="46"></circle>
                 </svg></button><button id="sec" disabled="" autocomplete="off" title="Record by 1 second"><svg
@@ -170,7 +176,7 @@
         <ul id="list"></ul>
     </main>
 
-    <div>
+    <div align=center>
 			<p>Thanks to <a href="https://github.com/ai/audio-recorder-polyfill">Audio Recorder Polyfill</a></p>
 			<p>Contribute code and questions at <a href="https://github.com/leeleilei/leeleilei.github.com">github</a>.</p>
 			<p>Tip: Enable the micro permssion if you are using Chrome on Android phone</p>
@@ -189,12 +195,8 @@
     
                 function myFunc(item, index){
                     n = index + 1;
-                    document.getElementById("accordion").innerHTML +=  "<h3>Question " + n + "</h3><div><p>" + item + "</p></div>"
-                }
-                $( function() {
-                      $("#accordion").accordion();
-            });
-            
+                    document.getElementById("accordion").innerHTML +=   '<input type="radio" id="accordion-section' + n + '" checked aria-hidden="true" name="accordion">' + '<label for="accordion-section' + n + '" aria-hidden="true">Question ' + n +'</label>' + '<div><p>' + item + '</p></div>'
+                };          
             });
             </script>
 
