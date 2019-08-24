@@ -8,7 +8,7 @@
     <meta content="width=device-width" name="viewport">
     <meta name="theme-color" content="#00e5d2">
     <script src="polyfill.js"></script>
-    
+
     <style>
         * {
             padding: 0;
@@ -140,6 +140,7 @@
 </head>
 
 <body>
+        <h1>IELTS Speaking Test Assistant - Part 1</h1> 
     <main>
         <p><a href="https://github.com/ai/audio-recorder-polyfill">Audio
                 Recorder Polyfill</a> is a MediaRecorder polyfill to&nbsp;record audio
@@ -168,7 +169,44 @@
             or WebRTC to be able to polyfill MediaRecorder.</div>
         <ul id="list"></ul>
     </main>
+
+    <div>
+			<p>Thanks to <a href="https://github.com/ai/audio-recorder-polyfill">Audio Recorder Polyfill</a></p>
+			<p>Contribute code and questions at <a href="https://github.com/leeleilei/leeleilei.github.com">github</a>.</p>
+			<p>Tip: Enable the micro permssion if you are using Chrome on Android phone</p>
+			</div>
+
+
     <script>(function () { var a, i, b, c, d, f, g, h, l = ["start", "stop", "pause", "resume"], m = ["audio/webm", "audio/ogg", "audio/wav"], j = 1024, k = 1 << 20; function n(e) { var r, $ = Math.abs(e); return $ >= k ? (r = "MB", e /= k) : $ >= j ? (r = "KB", e /= j) : r = "B", e.toFixed(0).replace(/(?:\.0*|(\.[^0]+)0+)$/, "$1") + " " + r } function e(e) { i.innerHTML = "", navigator.mediaDevices.getUserMedia({ audio: !0 }).then(function (r) { a = new MediaRecorder(r), l.forEach(function (e) { a.addEventListener(e, t.bind(null, e)) }), a.addEventListener("dataavailable", s), "full" === e ? a.start() : a.start(1e3) }), c.blur(), b.blur() } function o() { a.stop(), a.stream.getTracks()[0].stop(), g.blur() } function p() { a.pause(), d.blur() } function q() { a.resume(), f.blur() } function r() { a.requestData(), h.blur() } function s(e) { var r = document.createElement("li"), $ = document.createElement("strong"); $.innerText = "dataavailable: ", r.appendChild($); var a = document.createElement("span"); a.innerText = e.data.type + ", " + n(e.data.size), r.appendChild(a); var o = document.createElement("audio"); o.controls = !0, o.src = URL.createObjectURL(e.data), r.appendChild(o), i.appendChild(r) } function t(e) { var r = document.createElement("li"); r.innerHTML = "<strong>" + e + ": </strong>" + a.state, "start" === e && (r.innerHTML += ", " + a.mimeType), i.appendChild(r), "recording" === a.state ? (c.disabled = !0, b.disabled = !0, h.disabled = !1, f.disabled = !0, d.disabled = !1, g.disabled = !1) : "paused" === a.state ? (c.disabled = !0, b.disabled = !0, h.disabled = !1, f.disabled = !1, d.disabled = !0, g.disabled = !1) : "inactive" === a.state && (c.disabled = !1, b.disabled = !1, h.disabled = !0, f.disabled = !0, d.disabled = !0, g.disabled = !0) } i = document.getElementById("list"), c = document.getElementById("sec"), b = document.getElementById("record"), h = document.getElementById("request"), f = document.getElementById("resume"), d = document.getElementById("pause"), g = document.getElementById("stop"), MediaRecorder.notSupported ? (i.style.display = "none", document.getElementById("controls").style.display = "none", document.getElementById("formats").style.display = "none", document.getElementById("mode").style.display = "none", document.getElementById("support").style.display = "block") : (document.getElementById("formats").innerText = "Format: " + m.filter(function (e) { return MediaRecorder.isTypeSupported(e) }).join(", "), c.addEventListener("click", e.bind(null, "parts")), b.addEventListener("click", e.bind(null, "full")), h.addEventListener("click", r), f.addEventListener("click", q), d.addEventListener("click", p), g.addEventListener("click", o), c.disabled = !1, b.disabled = !1); })();</script>
+	<script>
+            var url = "p1.txt";
+            $.ajax(url).done(function(data) {
+                var myQs = data.split("--\n");
+                x = Math.floor(Math.random() * Math.floor(myQs.length));
+                myQ = myQs[x].split("\n");
+                
+                myQ.forEach(myFunc);
+    
+                function myFunc(item, index){
+                    n = index + 1;
+                    document.getElementById("accordion").innerHTML +=  "<h3>Question " + n + "</h3><div><p>" + item + "</p></div>"
+                }
+                $( function() {
+                      $("#accordion").accordion();
+            });
+            
+            });
+            </script>
+
+
+<script src="https://utteranc.es/client.js"
+repo="leeleilei/leeleilei.github.com"
+issue-term="pathname"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
 </body>
 
 </html>
