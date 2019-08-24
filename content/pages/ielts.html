@@ -199,7 +199,7 @@
     
                 function myFunc(item, index){
                     n = index + 1;
-                    document.getElementById("accordion").innerHTML +=   '<input type="radio" id="accordion-section' + n + '" checked aria-hidden="true" name="accordion">' + '<label for="accordion-section' + n + '" aria-hidden="true">Question ' + n +'</label>' + '<div><p>' + item + '</p></div>'
+                    $(".collapse").innerHTML +=   '<input type="radio" id="accordion-section' + n + '" checked aria-hidden="true" name="accordion">' + '<label for="accordion-section' + n + '" aria-hidden="true">Question ' + n +'</label>' + '<div><p>' + item + '</p></div>'
                 }       
                 }
             })
