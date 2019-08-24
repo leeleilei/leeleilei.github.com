@@ -189,6 +189,12 @@
 	<script>
         $("#sec").hide();
 
+        function myFunc(item, index){
+                    n = index + 1;
+                    
+                    $("#question").html = item;
+        };
+
         $.ajax({
             type: 'GET',
             url: 'p1.txt',
@@ -196,13 +202,14 @@
                 var myQs = data.split("--\n");
                 x = Math.floor(Math.random() * Math.floor(myQs.length));
                 myQ = myQs[x].split("\n");
-            
-                myQ.forEach(myFunc);
-                function myFunc(item, index){
-                    n = index + 1;
-                    
-                    $("#question").html = myQ;
-                };       
+
+                for(i=0;i<myQ.length;i++){
+                    n = i + 1;
+                    res = res + '<input type="radio" id="accordion-section' + n + '" checked aria-hidden="true" name="accordion">' + '<label for="accordion-section' + n + '" aria-hidden="true">Question ' + n +'</label>' + '<div><p>' + myQ[i] + '</p></div>'
+                };
+
+                $("#question").html(res);
+
             }
         });
         </script>
