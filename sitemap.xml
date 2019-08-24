@@ -53,6 +53,11 @@
   </url>
   
   <url>
+    <loc>http://localhost:1313/pages/ielts/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://localhost:1313/pages/ieltspeakit/</loc>
     <priority>0</priority>
   </url>
