@@ -44,5 +44,5 @@ paginate = 5
         url = "/tags/index.html"
       [[languages.en.menu.main]]
         identifier = "IELTS"
-        name = "Tags"
+        name = "IELTS Speaking P1"
         url = "/pages/ielts/"
