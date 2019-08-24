@@ -36,10 +36,9 @@ In the very beginning, I thought it was really difficult to install a linux from
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/pages/ieltspeakit/</guid>
-      <description>IELTS Speaking Test Assistant   IELTS Speaking Test Assistant - Part 1    Thanks to Audio Recorder Polyfill
-Contribute code and questions at my github.
-Tip: Enable the micro permssion if you are using Chrome on Android phone
- 1s       Native support, force polyfill  Your browser doesn’t support MediaRecorder or WebRTC to be able to polyfill MediaRecorder.   (function () { var a, i, b, c, d, f, g, h, l = [&#34;</description>
+      <description>IELTS Speaking Test Assistant   IELTS Speaking Test Assistant - Part 1     1s       Native support, force polyfill  Your browser doesn’t support MediaRecorder or WebRTC to be able to polyfill MediaRecorder.   Thanks to Audio Recorder Polyfill
+Contribute code and questions at github.
+Tip: Enable the micro permssion if you are using Chrome on Android phone</description>
     </item>
     
   </channel>
