@@ -12,3 +12,9 @@
 
 @import 'prism';
 @import 'syntax';
+
+iframe {
+    width: 800;
+    height: 1000;
+    border: none;
+  }
