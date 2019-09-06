@@ -35,10 +35,32 @@ paginate = 5
 
     [languages.en.menu]
       [[languages.en.menu.main]]
-        identifier = "ielts"
-        name = "ielts"
+        identifier = "grid"
+        name = "Grid Trade"
         url = "."
+        weight: 2
+      [[languages.en.menu.main]]
+        identifier = "bitcoin"
+        name = "Bitcoin"
+        url = "."
+        weight: 1           
+      [[languages.en.menu.main]]
+        identifier = "books"
+        name = "Books"
+        url = "."
+        weight: 4
+      [[languages.en.menu.main]]
+        identifier = "ielts"
+        name = "IELTS"
+        url = "."
+        weight: 3
+      [[languages.en.menu.main]]
+        identifier = "ieltspeak"
+        name = "IELTS Speak"
+        url = "."
+        weight: 1
       [[languages.en.menu.main]]
         identifier = "tags"
         name = "Tags"
         url = "/tags/index.html"
+        weight: 5

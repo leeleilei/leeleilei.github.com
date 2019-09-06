@@ -5,9 +5,10 @@ draft: false
 toc: true
 tags: ["ielts"]
 menu:
-    docs: 
+    main: 
         title: "IELTS Speaking Test - Part 1"
-        parent: "IELTS"
+        parent: "ieltspeak"
+        weight: 1
 ---
 
 Over 1000 speaking part 1 questions are crampled here. Enjoy and practise it!
