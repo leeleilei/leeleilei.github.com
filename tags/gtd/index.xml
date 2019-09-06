@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Zen of Bitcoin</title>
-    <link>https://btcz.im/posts/</link>
-    <description>Recent content in Posts on Zen of Bitcoin</description>
+    <title>GTD on Zen of Bitcoin</title>
+    <link>https://btcz.im/tags/gtd/</link>
+    <description>Recent content in GTD on Zen of Bitcoin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 02 May 2017 08:10:52 -0400</lastBuildDate>
     
-	<atom:link href="https://btcz.im/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://btcz.im/tags/gtd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <description>There are many productive software and tools to boost your &amp;ldquo;GTD&amp;rdquo; and make your informative life organised, while after years of struggling and practice, here&amp;rsquo;s a list of &amp;ldquo;MUST TRY&amp;rdquo;. Keep using it and fit it in your life, then you will be like a &amp;ldquo;BOSS&amp;rdquo;.
 Github Use it as your blog and code base like this website.
 Google G-suit Online docs and sheets are much more easiler and free to collaborate one another and open-to-use.</description>
-    </item>
-    
-    <item>
-      <title>Install Linux With Pen Drive</title>
-      <link>https://btcz.im/posts/install-linux-with-usb-drive/</link>
-      <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
-      
-      <guid>https://btcz.im/posts/install-linux-with-usb-drive/</guid>
-      <description>Note: I would recommend you use the unetbootin to make the Linux bootable USB drive, since it is more easier (GUI) and convinience (auto-download distribution CD, auto-make boot flags). The below process just reach the same target, helping you understand what happened during the unetbootin process.
-In the very beginning, I thought it was really difficult to install a linux from a USB, since it requires GRUB, kinds of alternative CD media, and a &amp;ldquo;special&amp;rdquo; cd boot vmlinuz and initrd.</description>
     </item>
     
   </channel>

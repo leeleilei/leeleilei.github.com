@@ -22,7 +22,7 @@ paginate = 5
 [languages]
   [languages.en]
     title = "Zen of Bitcoin"
-    subtitle = "Understand and observe the Bitcoin"
+    subtitle = "Understanding the Bitcoin"
     keywords = ""
     copyright = ""
     menuMore = "Show more"
