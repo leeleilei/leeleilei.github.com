@@ -262,3 +262,9 @@ hr {
 .hidden {
   display: none;
 }
+
+iframe {
+  width: 800;
+  height: 1000;
+  border: none;
+}
