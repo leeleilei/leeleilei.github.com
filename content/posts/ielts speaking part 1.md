@@ -8,4 +8,4 @@ tags: ["ielts"]
 
 Over 1000 speaking part 1 questions are crampled here. Enjoy and practise it!
 
-<iframe src="https://btcz.im/pages/ielts/"></iframe>
+<iframe src="https://btcz.im/pages/ielts/" width="600" height="800"></iframe>
