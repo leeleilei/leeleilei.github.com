@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Zen of Bitcoin</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://btcz.im/tags/</link>
     <description>Recent content in Tags on Zen of Bitcoin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Aug 2019 08:10:52 -0400</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://btcz.im/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ielts</title>
-      <link>http://localhost:1313/tags/ielts/</link>
+      <link>https://btcz.im/tags/ielts/</link>
       <pubDate>Fri, 02 Aug 2019 08:10:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/tags/ielts/</guid>
+      <guid>https://btcz.im/tags/ielts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GTD</title>
-      <link>http://localhost:1313/tags/gtd/</link>
+      <link>https://btcz.im/tags/gtd/</link>
       <pubDate>Tue, 02 May 2017 08:10:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/tags/gtd/</guid>
+      <guid>https://btcz.im/tags/gtd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>boot</title>
-      <link>http://localhost:1313/tags/boot/</link>
+      <link>https://btcz.im/tags/boot/</link>
       <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/tags/boot/</guid>
+      <guid>https://btcz.im/tags/boot/</guid>
       <description></description>
     </item>
     
     <item>
       <title>fdisk</title>
-      <link>http://localhost:1313/tags/fdisk/</link>
+      <link>https://btcz.im/tags/fdisk/</link>
       <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/tags/fdisk/</guid>
+      <guid>https://btcz.im/tags/fdisk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>grub</title>
-      <link>http://localhost:1313/tags/grub/</link>
+      <link>https://btcz.im/tags/grub/</link>
       <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/tags/grub/</guid>
+      <guid>https://btcz.im/tags/grub/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>http://localhost:1313/tags/linux/</link>
+      <link>https://btcz.im/tags/linux/</link>
       <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
       
-      <guid>http://localhost:1313/tags/linux/</guid>
+      <guid>https://btcz.im/tags/linux/</guid>
       <description></description>
     </item>
     
