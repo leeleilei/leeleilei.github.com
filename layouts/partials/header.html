@@ -8,6 +8,8 @@
   {{ if len $.Site.Menus }}
     {{ partial "menu.html" . }}
   {{ end }}
+  <div>
+    <hr>
   <section>
     {{ range .Site.Taxonomies.tags }}
     {{ $fs := (div .Count 100) }}
@@ -16,4 +18,5 @@
     <a href="{{ .Page.Permalink }}" style="font-size: {{ $fs }}%">{{ .Page.Title }}</a>
     {{ end }}
     </section>
+    </div>
 </header>
