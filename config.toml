@@ -19,6 +19,11 @@ paginate = 5
   # set a custom favicon (default is a `themeColor` square)
   # favicon = "favicon.ico"
 
+[taxonomies]
+# Use singular rather than plural for default taxonomies
+tag = "tag"
+category = "category"
+
 [languages]
   [languages.en]
     title = "Zen of Bitcoin"
