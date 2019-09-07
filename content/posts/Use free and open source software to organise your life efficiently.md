@@ -4,7 +4,7 @@ title: Use FREE and Open-Source Software to Organise Your Life Efficiently
 date: 2017-05-02T08:10:52-04:00
 draft: false
 toc: true
-tags: ["GTD"]
+tags: ["GTD","free"]
 ---
 
 There are many productive software and tools to boost your "GTD" and make your informative life organised, while after years of struggling and practice, here's a list of "MUST TRY". Keep using it and fit it in your life, then you will be like a "BOSS".

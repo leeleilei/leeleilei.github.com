@@ -4,11 +4,6 @@ date: 2019-08-02T08:10:52-04:00
 draft: false
 toc: true
 tags: ["ielts"]
-menu:
-    main: 
-        title: "IELTS Speaking Test - Part 1"
-        parent: "ieltspeak"
-        weight: 1
 ---
 
 Over 1000 speaking part 1 questions are crampled here. Enjoy and practise it!

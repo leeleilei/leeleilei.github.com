@@ -3,7 +3,7 @@ title: "Install Linux With Pen Drive"
 date: 2013-04-02T08:10:52-04:00
 draft: false
 toc: true
-tags: ["linux","boot","grub","fdisk"]
+tags: ["linux"]
 ---
 
 __Note: I would recommend you use the [unetbootin][unetbootin] to make the Linux bootable USB drive, since it is more easier (GUI) and convinience (auto-download distribution CD, auto-make boot flags). The below process just reach the same target, helping you understand what happened during the `unetbootin` process.__

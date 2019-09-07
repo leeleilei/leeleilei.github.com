@@ -3,27 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://btcz.im/pages/about/</loc>
-    <lastmod>2019-08-12T17:20:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://btcz.im/pages/</loc>
-    <lastmod>2019-08-12T17:20:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://btcz.im/</loc>
-    <lastmod>2019-08-12T17:20:54+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://btcz.im/tags/ielts/</loc>
     <lastmod>2019-08-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://btcz.im/posts/ielts-speaking-part-1/</loc>
+    <lastmod>2019-08-02T08:10:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://btcz.im/posts/ieltspeak1/</loc>
     <lastmod>2019-08-02T08:10:52-04:00</lastmod>
   </url>
   
@@ -38,6 +28,16 @@
   </url>
   
   <url>
+    <loc>https://btcz.im/</loc>
+    <lastmod>2019-08-02T08:10:52-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://btcz.im/tags/free/</loc>
+    <lastmod>2017-05-02T08:10:52-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://btcz.im/tags/gtd/</loc>
     <lastmod>2017-05-02T08:10:52-04:00</lastmod>
   </url>
@@ -45,21 +45,6 @@
   <url>
     <loc>https://btcz.im/posts/use-free-and-open-source-software-to-organise-your-life-efficiently/</loc>
     <lastmod>2017-05-02T08:10:52-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://btcz.im/tags/boot/</loc>
-    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://btcz.im/tags/fdisk/</loc>
-    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://btcz.im/tags/grub/</loc>
-    <lastmod>2013-04-02T08:10:52-04:00</lastmod>
   </url>
   
   <url>
@@ -79,6 +64,10 @@
   
   <url>
     <loc>https://btcz.im/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://btcz.im/pages/</loc>
   </url>
   
 </urlset>
