@@ -2,7 +2,7 @@ baseURL = "https://btcz.im"
 languageCode = "en-us"
 title = "Zen of Bitcoin"
 
-paginate = 5
+paginate = 50
 
 [params]
   # dir name of your blog content (default is `content/posts`)

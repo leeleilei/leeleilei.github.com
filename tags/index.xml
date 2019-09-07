@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Zen of Bitcoin</title>
-    <link>https://btcz.im/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Zen of Bitcoin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 02 Aug 2019 08:10:52 -0400</lastBuildDate>
     
-	<atom:link href="https://btcz.im/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>ielts</title>
-      <link>https://btcz.im/tags/ielts/</link>
+      <link>http://localhost:1313/tags/ielts/</link>
       <pubDate>Fri, 02 Aug 2019 08:10:52 -0400</pubDate>
       
-      <guid>https://btcz.im/tags/ielts/</guid>
+      <guid>http://localhost:1313/tags/ielts/</guid>
       <description></description>
     </item>
     
     <item>
       <title>free</title>
-      <link>https://btcz.im/tags/free/</link>
+      <link>http://localhost:1313/tags/free/</link>
       <pubDate>Tue, 02 May 2017 08:10:52 -0400</pubDate>
       
-      <guid>https://btcz.im/tags/free/</guid>
+      <guid>http://localhost:1313/tags/free/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GTD</title>
-      <link>https://btcz.im/tags/gtd/</link>
+      <link>http://localhost:1313/tags/gtd/</link>
       <pubDate>Tue, 02 May 2017 08:10:52 -0400</pubDate>
       
-      <guid>https://btcz.im/tags/gtd/</guid>
+      <guid>http://localhost:1313/tags/gtd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>https://btcz.im/tags/linux/</link>
+      <link>http://localhost:1313/tags/linux/</link>
       <pubDate>Tue, 02 Apr 2013 08:10:52 -0400</pubDate>
       
-      <guid>https://btcz.im/tags/linux/</guid>
+      <guid>http://localhost:1313/tags/linux/</guid>
       <description></description>
     </item>
     
