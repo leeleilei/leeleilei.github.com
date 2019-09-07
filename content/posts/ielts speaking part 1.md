@@ -13,4 +13,4 @@ menu:
 
 Over 1000 speaking part 1 questions are crampled here. Enjoy and practise it!
 
-<iframe src="https://btcz.im/pages/ielts/"></iframe>
+<iframe src="https://btcz.im/pages/ielts/" style="width=800px;border=none;"></iframe>

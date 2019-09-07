@@ -1,6 +1,0 @@
-<ul id="tags-single">
-    <li>Tags:</li>
-    {{ range .Params.tags }}
-      <li><a href="{{ $.Site.BaseURL }}tags/{{ . | urlize }}">{{ . }}</a> </li>
-    {{ end }}
-  </ul>

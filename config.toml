@@ -2,7 +2,6 @@ baseURL = "https://btcz.im"
 languageCode = "en-us"
 title = "Zen of Bitcoin"
 
-theme = "terminal"
 paginate = 5
 
 [params]
@@ -20,9 +19,8 @@ paginate = 5
   # favicon = "favicon.ico"
 
 [taxonomies]
-# Use singular rather than plural for default taxonomies
-tag = "tag"
-category = "category"
+  tag = "tags"
+  category = "categories"
 
 [languages]
   [languages.en]
@@ -39,8 +37,3 @@ category = "category"
       logoHomeLink = "/"
 
     [languages.en.menu]
-      [[languages.en.menu.main]]
-        identifier = "tags"
-        name = "Tags"
-        url = "/tags/index.html"
-        weight= 5
