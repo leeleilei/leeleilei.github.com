@@ -1,6 +1,7 @@
 baseURL = "https://btcz.im"
 languageCode = "en-us"
 title = "Zen of Bitcoin"
+relativeurls = true
 
 paginate = 50
 
